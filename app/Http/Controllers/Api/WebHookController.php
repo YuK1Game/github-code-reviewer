@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\UseCases\GitHubPullRequest\Source as GitHubPullRequestSource;
+use App\UseCases\ChatGPT\ChatGPT;
+
 class WebHookController extends Controller
 {
     /**
@@ -20,8 +23,12 @@ class WebHookController extends Controller
      */
     public function store(Request $request)
     {
-        // test
-        logger()->debug($request->all());
+        $githubPullRequestSource = new GitHubPullRequestSource($request->all());
+        $sources = $githubPullRequestSource->getSources();
+
+        $chatGpt = new ChatGPT();
+        $templates = $chatGpt->getTemplatesBySources($sources);
+        dd($templates);
     }
 
     /**

@@ -10,13 +10,24 @@ class ChatGPT
 
     protected string $language;
 
-    protected View $view;
+    protected string $templateName = 'templates.prompts';
 
     public function __construct(string $language = 'ja')
     {
         $this->openAIClient = new OpenAIClient(config('OPENAI_API_KEY'));
         $this->language = $language;
-        $this->view = View::make('templates.prompts');
     }
+
+    public function getTemplatesBySources(array $sources) : array
+    {
+        $templates = collect($sources)->map(function(string $source) {
+            $view = View::make($this->templateName, ['source' => $source]);
+            $renderedView = $view->render();
+            return $renderedView;
+        });
+        
+        return $templates->all();
+    }
+    
 
 }
