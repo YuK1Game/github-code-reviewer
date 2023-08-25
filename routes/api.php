@@ -20,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiRresource('/webhook', WebHookController::class);
+Route::apiResource('/webhook', WebHookController::class);
