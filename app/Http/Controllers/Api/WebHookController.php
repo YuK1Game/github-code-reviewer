@@ -20,6 +20,7 @@ class WebHookController extends Controller
      */
     public function store(Request $request)
     {
+        // test
         logger()->debug($request->all());
     }
 
