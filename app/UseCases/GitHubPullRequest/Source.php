@@ -3,6 +3,7 @@ namespace App\UseCases\GitHubPullRequest;
 
 use App\Services\GitHub\WebHooks\PullRequest as PullRequest;
 use App\Services\GitHub\Client as GitHubClient;
+use Illuminate\View\View;
 
 class Source
 {

@@ -27,7 +27,7 @@ class WebHookController extends Controller
         $sources = $githubPullRequestSource->getSources();
 
         $chatGpt = new ChatGPT();
-        $templates = $chatGpt->getTemplatesBySources($sources);
+        $templates = $chatGpt->getTemplatesWithSources($sources);
         dd($templates);
     }
 

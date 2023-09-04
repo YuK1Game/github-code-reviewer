@@ -18,7 +18,7 @@ class ChatGPT
         $this->language = $language;
     }
 
-    public function getTemplatesBySources(array $sources) : array
+    public function getTemplatesWithSources(array $sources) : array
     {
         $templates = collect($sources)->map(function(string $source) {
             $view = View::make($this->templateName, ['source' => $source]);
@@ -27,6 +27,11 @@ class ChatGPT
         });
         
         return $templates->all();
+    }
+
+    public function requestChatResponse(array $messages)
+    {
+        return $this->openAIClient->generateChatResponse($messages);
     }
     
 
