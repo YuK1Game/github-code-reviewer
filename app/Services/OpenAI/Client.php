@@ -4,6 +4,7 @@ namespace App\Services\OpenAI;
 use OpenAI;
 use OpenAI\Client as OpenAIClient;
 use OpenAI\Responses\Chat\CreateResponse;
+use OpenAI\Responses\StreamResponse;
 
 class Client
 {

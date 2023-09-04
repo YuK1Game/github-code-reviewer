@@ -2,6 +2,7 @@
 namespace App\UseCases\ChatGPT;
 
 use App\Services\OpenAI\Client as OpenAIClient;
+use OpenAI\Responses\Chat\CreateResponse;
 use Illuminate\Support\Facades\View;
 
 class ChatGPT
@@ -29,10 +30,8 @@ class ChatGPT
         return $templates->all();
     }
 
-    public function requestChatResponse(array $messages)
+    public function requestChatResponse(array $messages) : CreateResponse
     {
         return $this->openAIClient->generateChatResponse($messages);
     }
-    
-
 }
