@@ -19,6 +19,11 @@ class ChatGPT
         $this->language = $language;
     }
 
+    public function getClient() : OpenAIClient
+    {
+        return $this->openAIClient;
+    }
+
     public function getTemplatesWithSources(array $sources) : array
     {
         $templates = collect($sources)->map(function(string $source) {

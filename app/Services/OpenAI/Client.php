@@ -4,7 +4,6 @@ namespace App\Services\OpenAI;
 use OpenAI;
 use OpenAI\Client as OpenAIClient;
 use OpenAI\Responses\Chat\CreateResponse;
-use OpenAI\Responses\StreamResponse;
 
 class Client
 {
@@ -23,5 +22,17 @@ class Client
         ]);
 
         return $chatResponse;
+    }
+
+    public function generateAllChatResponses(array $messageList) : array
+    {
+        $responses = [];
+        foreach ($messageList as $messages) {
+            $responses[] = $this->openAIClient->chat()->createStreamed([
+                'model' => config('openai.chatgpt.model'),
+                'messages' => $messages,
+            ]);
+        }
+        return $responses;
     }
 }
